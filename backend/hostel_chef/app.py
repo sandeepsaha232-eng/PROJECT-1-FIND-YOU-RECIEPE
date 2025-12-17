@@ -1,4 +1,8 @@
 # --- COMPATIBILITY PATCH FOR PYTHON 3.9 ---
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 import sys
 if sys.version_info < (3, 10):
     try:
@@ -25,13 +29,25 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app, supports_credentials=True) # supports_credentials essential for session cookies with CORS
 
-# PASTE YOUR KEY HERE
-genai.configure(api_key="AIzaSyCphuKd24Vx0RP36wQ2ySKB6NTlz5RsGro")
+# Load secrets from the .env file
+# Get the key securely
+api_key = os.getenv("GOOGLE_API_KEY")
 
+if not api_key:
+    # Fallback/Debug print if needed, or just raise error
+    print("Warning: GOOGLE_API_KEY not found in .env file.")
+    # raise ValueError("No API Key found. Please check your .env file.") 
+    # (Commenting out raise to avoid crashing if user hasn't set it perfectly yet, 
+    # but based on instructions I should probably raise it. User code had raise.)
+
+if not api_key:
+     raise ValueError("No API Key found. Please check your .env file.")
+
+genai.configure(api_key=api_key)
 # Set up the model
 # Updated to match your 2025 available models
 model = genai.GenerativeModel('gemini-2.5-flash')
-import os
+# import os (Moved to top)
 
 # ...
 
