@@ -2,7 +2,7 @@
     "version": 2,
     "functions": {
         "api/**/*.py": {
-            "excludeFiles": "{index.html,style.css,script.js,assets/**,static/**,tests/**,**/__pycache__/**}"
+            "excludeFiles": "{index.html,style.css,script.js,assets/**,static/**,venv/**,**/__pycache__/**}"
         }
     },
     "rewrites": [
