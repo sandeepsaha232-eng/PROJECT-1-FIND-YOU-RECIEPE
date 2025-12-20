@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const response = await fetch('http://127.0.0.1:5001/status', {
+        const response = await fetch('/api/status', {
             method: 'GET',
             credentials: 'include'
         });
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             e.preventDefault();
             if (confirm('Logging out?')) {
                 try {
-                    await fetch('http://127.0.0.1:5001/logout', {
+                    await fetch('/api/logout', {
                         method: 'POST',
                         credentials: 'include' // Essential for cookie-based auth
                     });
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const passwordInput = loginForm.querySelector('input[type="password"]');
 
             try {
-                const response = await fetch('http://127.0.0.1:5001/login', {
+                const response = await fetch('/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include', // Essential for saving the session cookie
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             try {
-                const response = await fetch('http://127.0.0.1:5001/register', {
+                const response = await fetch('/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             formData.append('image', file);
 
             try {
-                const response = await fetch('http://127.0.0.1:5001/suggest', {
+                const response = await fetch('/api/suggest', {
                     method: 'POST',
                     credentials: 'include', // vital for @login_required
                     body: formData
@@ -579,7 +579,7 @@ async function loadHistory() {
     container.innerHTML = '<p style="color: #888; text-align: center; grid-column: 1/-1;">Loading history...</p>';
 
     try {
-        const response = await fetch('http://127.0.0.1:5001/history', {
+        const response = await fetch('/api/history', {
             method: 'GET',
             credentials: 'include'
         });
@@ -650,7 +650,7 @@ window.handleCredentialResponse = async function (response) {
         console.log("Email: " + responsePayload.email);
 
         // Send token to backend for verification and session
-        const backendResp = await fetch('http://127.0.0.1:5001/google_login', {
+        const backendResp = await fetch('/api/google_login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
