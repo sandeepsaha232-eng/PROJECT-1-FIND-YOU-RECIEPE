@@ -1,23 +1,10 @@
 {
     "version": 2,
-    "builds": [
-        {
-            "src": "api/index.py",
-            "use": "@vercel/python"
-        },
-        {
-            "src": "index.html",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "style.css",
-            "use": "@vercel/static"
-        },
-        {
-            "src": "script.js",
-            "use": "@vercel/static"
+    "functions": {
+        "api/**/*.py": {
+            "excludeFiles": "{index.html,style.css,script.js,assets/**,static/**,tests/**,**/__pycache__/**}"
         }
-    ],
+    },
     "rewrites": [
         {
             "source": "/api/(.*)",
