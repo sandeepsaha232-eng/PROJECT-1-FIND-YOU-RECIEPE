@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredient Explorer - Delicious Home-Cooked Meals</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="assets/logo.jpeg" alt="Ingredient Explorer" style="height: 120px; width:auto; ">
+            </div>
+            <nav id="standardNav">
+                <ul>
+                    <li><a href="#" class="active" onclick="location.reload(); return false;"><i
+                                class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#recipes" id="std-nav-recipes"><i class="fas fa-utensils"></i> Recipes</a></li>
+                    <li><a href="#about" id="std-nav-about"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#" id="std-nav-contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions" id="headerActions">
+                <a class="btn-text" id="loginBtn">Log in</a>
+                <a href="#" class="btn-cta">Get started for free</a>
+            </div>
+
+            <!-- Dashboard Navigation (Hidden Default) -->
+            <div id="dashboard-nav" class="dashboard-nav">
+                <div class="dash-links">
+                    <a href="#" class="dash-link active" id="nav-home"><i class="fas fa-home"></i> Home</a>
+                    <a href="#" class="dash-link" id="nav-trending"><i class="fas fa-fire"></i> Trending</a>
+                    <a href="#" class="dash-link" id="nav-favorites"><i class="fas fa-heart"></i> Favourites</a>
+                    <a href="#" class="dash-link"><i class="fas fa-history"></i> History</a>
+                    <a href="#" class="dash-link" id="nav-contact"><i class="fas fa-envelope"></i> Contact</a>
+                    <a href="#" class="dash-link"><i class="fas fa-cog"></i> Settings</a>
+                    <!-- Logout Moved here for Desktop compatibility, but can be separate in mobile -->
+                    <a href="#" class="dash-link logout-btn" id="dashboardLogout"><i class="fas fa-sign-out-alt"></i>
+                        Logout</a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobileMenuBtn" class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-section">
+        <img src="assets/hero-bg.png" alt="Dark Food Background" class="hero-bg">
+        <div class="hero-content">
+            <h1 class="hero-title animate-up delay-1">Turn Ingredients<br>into Masterpieces</h1>
+            <p class="hero-subtitle animate-up delay-2">Your smart kitchen companion. Snap a photo, get a recipe, and
+                cook with confidence.</p>
+            <div class="upload-section" style="margin-top: 2rem;">
+                <input type="file" id="foodImage" accept="image/*"
+                    style="padding: 10px; background: rgba(255,255,255,0.9); border-radius: 5px; cursor: pointer;">
+                <button id="cookBtn" class="btn-primary" style="margin-left: 10px;">👨‍🍳 Cook Something!</button>
+            </div>
+            <div id="result"
+                style="margin-top: 20px; text-align: left; background: rgba(255,255,255,0.95); padding: 20px; border-radius: 10px; display: none; color: #333; max-width: 600px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Feed Section (Dark Mode, Transparent) -->
+    <section id="recipes" class="recipes-section"
+        style="padding: 100px 20px; min-height: 100vh; background-color: transparent;">
+        <h2
+            style="text-align: center; margin-bottom: 40px; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+            Trending Easy Recipes</h2>
+        <div id="feed-grid" class="grid-container">
+            <!-- Content Injected via JS -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="section-title">About Ingredient Explorer</h2>
+            <p class="about-intro">
+                We believe the hardest part of cooking shouldn’t be deciding what to eat. Ingredient Explorer is your
+                smart
+                kitchen companion that turns the ingredients you already have into delicious meals. Simply snap a photo
+                or
+                upload an image of your ingredients, and our system instantly finds the perfect recipe for you.
+            </p>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Why We Exist</h3>
+                    <p>
+                        We’ve all been there—staring into an open fridge, seeing a random assortment of groceries, and
+                        having absolutely no idea what to make. We built Ingredient Explorer to end that daily struggle.
+                    </p>
+                    <ul class="about-list">
+                        <li><strong>No more food waste:</strong> We help you use what you have before it goes bad.</li>
+                        <li><strong>No more endless scrolling:</strong> Skip the long food blogs and get straight to the
+                            cooking.</li>
+                        <li><strong>Confidence in the kitchen:</strong> Whether you’re a pro chef or a beginner, we
+                            bridge
+                            the gap between "I have these ingredients" and "Dinner is served."</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <h3>What is Ingredient Explorer?</h3>
+                    <p>
+                        Ingredient Explorer is an AI-powered culinary tool designed to bridge the gap between visual
+                        input
+                        and actionable cooking instructions. By leveraging advanced image recognition technology, we
+                        allow
+                        users to upload photos of raw ingredients or finished dishes and instantly receive accurate,
+                        step-by-step recipe generation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Trending Section (Google Trends) -->
+    <section id="trending" class="trending-section" style="display: none; padding: 120px 20px; text-align: center;">
+        <h2 class="trending-title" style="color: white; margin-bottom: 30px;">
+            🔥 Trending Now on Google
+        </h2>
+
+        <div id="trending-container" class="trending-grid"
+            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+            <p id="trending-loading" style="color: #888; text-align: center; grid-column: 1/-1;">
+                Fetching live data from Google...
+            </p>
+        </div>
+    </section>
+
+    </p>
+    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="contact-section"
+        style="display: none; padding: 120px 20px; text-align: center; min-height: 100vh;">
+        <div
+            style="max-width: 600px; margin: 0 auto; background: #222; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+            <h2 style="color: #fff; margin-bottom: 30px; font-family: 'Playfair Display', serif;">Get in Touch</h2>
+            <div style="margin-bottom: 20px;">
+                <i class="fas fa-phone-alt" style="font-size: 2rem; color: #FFD700; margin-bottom: 10px;"></i>
+                <h3 style="color: #ddd; margin: 10px 0;">Customer Care</h3>
+                <p style="color: #aaa; font-size: 1.2rem;">+91 83274XXXXX</p>
+            </div>
+            <div style="margin-top: 40px;">
+                <i class="fas fa-envelope" style="font-size: 2rem; color: #FFD700; margin-bottom: 10px;"></i>
+                <h3 style="color: #ddd; margin: 10px 0;">Email Support</h3>
+                <p style="color: #aaa; font-size: 1.2rem;">sandeepmacXXX@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Favorites Section (Hidden Default) -->
+    <section id="favorites-section" class="favorites-section"
+        style="display: none; padding: 180px 20px 50px 20px; background-color: #1a1a1a; min-height: 100vh;">
+        <h2
+            style="text-align: center; color: white; font-size: 2.5rem; margin-bottom: 30px; font-family: 'Playfair Display', serif;">
+            ❤️ Your Saved Results
+        </h2>
+        <div id="favorites-grid" class="grid-container"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            <!-- Content Injected via JS -->
+            <p style="color: #888; text-align: center; grid-column: 1/-1;">No favorites saved yet.</p>
+        </div>
+    </section>
+
+    <!-- History Section (Hidden Default) -->
+    <section id="history-section" class="history-section"
+        style="display: none; padding: 180px 20px 50px 20px; background-color: #1a1a1a; min-height: 100vh;">
+        <h2
+            style="text-align: center; color: white; font-size: 2.5rem; margin-bottom: 30px; font-family: 'Playfair Display', serif;">
+            📜 Your Cooking History
+        </h2>
+        <div id="history-grid" class="grid-container"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            <!-- Content Injected via JS -->
+            <p style="color: #888; text-align: center; grid-column: 1/-1;">No history found.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/logo.jpeg" alt="Ingredient Explorer">
+            </div>
+            <div class="copyright">
+                &copy; 2025 Ingredient Explorer. All rights reserved.
+            </div>
+            <div class="socials">
+                <a href="https://www.instagram.com/_sandeep_saha_/" target="_blank"
+                    style="color: inherit; margin-right: 15px; text-decoration: none;">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sandeep-saha-311aa3380/" target="_blank"
+                    style="color: inherit; text-decoration: none;">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h2 class="modal-title">Log in</h2>
+
+            <!-- Google Sign-In Container -->
+            <div id="g_id_onload"
+                data-client_id="939304319890-lb1l18akm1ji2a5padq7kleosaq6civn.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
+
+            <div class="divider">or</div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" placeholder="EMAIL" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="PASSWORD" class="form-input" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Log in</button>
+            </form>
+
+            <div class="modal-links">
+                <a href="#" class="modal-link">Use single sign-on</a>
+                <a href="#" class="modal-link">Reset password</a>
+                <div class="create-account">
+                    No account? <a href="#" class="modal-link" id="switchToSignup">Create one</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal-content" style="max-width: 500px; padding: 2rem;">
+            <button class="modal-close" id="closeSignupModal">&times;</button>
+
+            <div style="text-align: center; margin-bottom: 20px;">
+                <img src="assets/logo.jpeg" alt="Logo" style="height: 60px; margin-bottom: 15px;">
+                <h2 class="modal-title" style="margin-bottom: 5px;">Create your account</h2>
+                <p style="color: #666; font-size: 0.95rem;">Start saving your favorite recipes today</p>
+            </div>
+
+            <!-- Google Sign-In Container (Signup) -->
+            <!-- Note: ID must be unique if rendered multiple times, but g_id_onload is script config. 
+                 The g_id_signin renders the button. 
+                 If we use standard data-type, it might auto render. 
+                 However, declaring g_id_onload twice might be redundant or problematic. 
+                 Usually placed once in body. But let's place the button div here. 
+                 Since modals are separate, only one is visible. 
+                 But I'll duplicate the container div just to be safe based on "Add an empty div..." instruction. 
+                 Actually, g_id_onload is global config. It should be once. 
+                 I'll place g_id_onload only in Login modal (first occurrence) or better, at top of body. 
+                 But to strictly follow replacement, I'll put the button div here. 
+                 Let's assume g_id_onload handles the global state. 
+                 Wait, if I have two g_id_onload in DOM, it might conflict.
+                 Secure approach: Put g_id_onload at top of body, and just .g_id_signin in modals.
+                 But I am limited to replacing chunks. 
+                 I'll replace the first button with the CONFIG + BUTTON.
+                 I'll replace the second button with JUST THE BUTTON. -->
+            <div class="g_id_signin" data-type="standard"></div>
+
+            <div class="divider">OR</div>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Full Name" class="form-input" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" class="form-input" id="signupEmail" required>
+                </div>
+                <!-- Password with Eye Icon -->
+                <div class="form-group" style="position: relative;">
+                    <input type="password" placeholder="Password" class="form-input" id="signupPassword" required>
+                    <i class="fas fa-eye password-toggle" id="toggleSignupPassword"
+                        style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Confirm Password" class="form-input" id="signupConfirmPassword"
+                        required>
+                </div>
+
+                <div class="form-group"
+                    style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #555;">
+                    <input type="checkbox" id="termsCheck" required style="accent-color: var(--color-bg-teal-dark);">
+                    <label for="termsCheck">I agree to <a href="#" style="text-decoration: underline;">Terms &
+                            Conditions</a></label>
+                </div>
+
+                <button type="submit" class="btn-submit">SIGN UP</button>
+            </form>
+
+            <div style="text-align: center; margin-top: 20px; font-size: 0.95rem; color: #666;">
+                Already have an account? <a href="#" id="switchToLogin"
+                    style="color: #0066cc; font-weight: 500;">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
